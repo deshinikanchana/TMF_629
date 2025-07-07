@@ -20,20 +20,17 @@ mongoose.connect(process.env.DATABASE_URL, {
 app.use("/tmf-api/customerManagement/v5/customer", customerRoutes);
 
 app.get('/', async (_req, res) => {
-   try {
-            const response = await axios.get(`https://tmf629-production.up.railway.app/tmf-api/customerManagement/v5/customer`);
+    try {
+        const response = await axios.get(`https://tmf629-production.up.railway.app/tmf-api/customerManagement/v5/customer`);
 
-            const customerList = response.data.map(c => `<li>${c.id} - ${c.name}</li>`).join("");
-
-            res.send(`
+        res.send(`
       <h2>Customer Management API</h2>
-      <ul>${customerList}</ul>
-      <p>Data fetched from <code>/tmf-api/customerManagement/v5/customer</code></p>
+      <pre>${JSON.stringify(response.data, null, 2)}</pre>
     `);
-        } catch (error) {
-            console.error('Failed to load customer data:', error.message);
-            res.status(500).send('Error loading customer data');
-        }
+    } catch (error) {
+        console.error('Failed to load customer data:', error.message);
+        res.status(500).send('Error loading customer data');
+    }
 });
 
 const PORT = process.env.PORT || 3000;
