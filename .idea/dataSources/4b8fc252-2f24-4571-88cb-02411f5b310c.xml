@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="CustomerManagement@localhost">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.51">
+    <root id="1">
+      <ServerVersion>6.0.24</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="CustomerManagement">
+      <Current>1</Current>
+      <LastIntrospectionLocalTimestamp>2025-07-12.15:41:41</LastIntrospectionLocalTimestamp>
+    </schema>
+    <schema id="3" parent="1" name="admin"/>
+    <schema id="4" parent="1" name="config"/>
+    <schema id="5" parent="1" name="local"/>
+    <table id="6" parent="2" name="counters"/>
+    <table id="7" parent="2" name="customers"/>
+  </database-model>
+</dataSource>

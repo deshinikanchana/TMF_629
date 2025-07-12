@@ -1,8 +1,22 @@
 const Customer = require("../models/Customer");
+const Counter = require("../models/Counter");
 
 exports.createCustomer = async (req, res) => {
     try {
-        const customer = new Customer(req.body);
+        const counter = await Counter.findByIdAndUpdate(
+            { _id: "customer" },
+            { $inc: { seq: 1 } },
+            { new: true, upsert: true }
+        );
+
+        const customerId = `Cust-${counter.seq}`;
+
+        const customer = new Customer({
+            ...req.body,
+            id: customerId,
+            href:`https://tmf629-production.up.railway.app/tmf-api/customerManagement/v5/customer/${customerId}`
+        });
+
         await customer.save();
         res.status(201).json(customer);
     } catch (err) {

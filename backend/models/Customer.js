@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const mongoose = require("mongoose");
 
 
@@ -75,7 +74,7 @@ const AgreementSchema = new mongoose.Schema({
 const CustomerSchema = new mongoose.Schema({
     "@type": { type: String, default: "Customer", required: true },
     href: String,
-    id: { type: String, required: true, unique: true,default:uuidv4 },
+    id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     status: { type: String, default:"Created",required: true },
     statusReason: String,
